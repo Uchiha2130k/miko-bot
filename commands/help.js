@@ -1,5 +1,8 @@
+const { MessageMedia } = require('whatsapp-web.js');
+
 module.exports = async function helpCommand(client, message, prefix) {
-    await message.reply(`
+    const helpImg = 'https://te.legra.ph/file/7ed246dfd92ce31c1d157.jpg';
+    const helpMsg = `
 *💻 Owner or Sudo Commands:*
 ➥ *${prefix}eval* [code] - Evaluate the given JavaScript code
 ➥ *${prefix}term* [command] - Execute the given command in terminal
@@ -76,5 +79,7 @@ module.exports = async function helpCommand(client, message, prefix) {
 ➥ *${prefix}repo* - Provides repo (deployable on Heroku)
 ➥ *${prefix}owner* - Provides owner contact
 
-    `);
+    `;
+    const media = await MessageMedia.fromUrl(helpImg, { unsafeMime: true })';
+    await client.sendMessage(message.from, media, { caption: helpMsg })
 }
